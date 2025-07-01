@@ -21,7 +21,7 @@
 **🚀 Automated 0G Labs Testnet V3 Galileo Validator Setup**
 
 [![Twitter](https://img.shields.io/twitter/follow/OVER9725?style=social)](https://twitter.com/OVER9725)
-[![GitHub Stars](https://img.shields.io/github/stars/Ovebafer999/0g-validator-setup)](https://github.com/Ovebafer999/0g-validator-setup)
+[![GitHub Stars](https://img.shields.io/github/stars/Overbafer999/0g-validator-setup)](https://github.com/Ovebafer999/0g-validator-setup)
 
 </div>
 
@@ -134,7 +134,7 @@ sudo systemctl restart 0gd
 ```
 
 **Need help?**
-- [GitHub Issues](https://github.com/Ovebafer999/0g-validator-setup/issues)
+- [GitHub Issues](https://github.com/Overbafer999/0g-validator-setup/issues)
 - [Discord Support](https://discord.gg/0glabs)
 
 ## ⚠️ Important
