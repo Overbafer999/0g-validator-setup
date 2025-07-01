@@ -3,9 +3,31 @@
 # 0G Labs V3 Galileo Validator Universal Setup Script
 # Author: OveR (@OVER9725)
 # GitHub: https://github.com/Overbafer999/0g-validator-setup
-# Version: 1.0
+# Version: 1.1 - Improved pipe handling
 
 set -e
+
+# Smart pipe detection and auto-fix
+if [ ! -t 0 ]; then
+    echo "🔧 Detected pipe execution. Auto-fixing for better compatibility..."
+    
+    # Download script to temp location
+    TEMP_SCRIPT="/tmp/0g_installer_$(date +%s).sh"
+    
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL https://raw.githubusercontent.com/Overbafer999/0g-validator-setup/main/install.sh -o "$TEMP_SCRIPT"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -q https://raw.githubusercontent.com/Overbafer999/0g-validator-setup/main/install.sh -O "$TEMP_SCRIPT"
+    else
+        echo "Installing wget for download..."
+        apt update &>/dev/null && apt install -y wget &>/dev/null
+        wget -q https://raw.githubusercontent.com/Overbafer999/0g-validator-setup/main/install.sh -O "$TEMP_SCRIPT"
+    fi
+    
+    chmod +x "$TEMP_SCRIPT"
+    echo "✅ Restarting in interactive mode..."
+    exec bash "$TEMP_SCRIPT" "$@"
+fi
 
 # Colors
 RED='\033[0;31m'
@@ -462,6 +484,11 @@ show_info() {
     print_warning "IMPORTANT: Backup your validator keys using ./backup.sh!"
 }
 
+# Cleanup function
+cleanup_temp_files() {
+    [ -f "$TEMP_SCRIPT" ] && rm -f "$TEMP_SCRIPT" 2>/dev/null || true
+}
+
 # Main function
 main() {
     show_banner
@@ -477,6 +504,7 @@ main() {
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         echo "Installation cancelled"
+        cleanup_temp_files
         exit 0
     fi
     
@@ -493,10 +521,11 @@ main() {
     create_tools
     start_node
     show_info
+    cleanup_temp_files
 }
 
-# Error handling
-trap 'print_error "Installation failed!"; exit 1' ERR
+# Error handling with cleanup
+trap 'print_error "Installation failed!"; cleanup_temp_files; exit 1' ERR
 
 # Run main function
 main "$@"
