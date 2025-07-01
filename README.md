@@ -85,7 +85,7 @@ cd ~/0g-tools && ./monitor_node.sh
 
 ## 📱 Get Test Tokens
 
-1. Go to [0G Faucet](https://faucet.0glabs.live)
+1. Go to [0G Faucet](https://faucet.0g.ai/)
 2. Enter your EVM address (shown after wallet creation)
 3. Request 0.1 OG tokens
 
