@@ -28,7 +28,9 @@
 ## ⚡ Quick Install
 
 ```bash
-curl -s https://raw.githubusercontent.com/Overbafer999/0g-validator-setup/main/install.sh | bash
+wget https://raw.githubusercontent.com/Overbafer999/0g-validator-setup/main/install.sh
+chmod +x install.sh
+./install.sh
 ```
 
 ## 📋 What This Script Does
