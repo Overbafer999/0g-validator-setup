@@ -2,7 +2,7 @@
 
 # 0G Labs V3 Galileo Validator Universal Setup Script
 # Author: OveR (@OVER9725)
-# GitHub: https://github.com/Ovebafer999/0g-validator-setup
+# GitHub: https://github.com/Overbafer999/0g-validator-setup
 # Version: 1.0
 
 set -e
